@@ -1,4 +1,4 @@
-# pitcher README
+# Pitcher
 
 This is the README for your extension "pitcher". After writing up a brief description, we recommend including the following sections.
 
