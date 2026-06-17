@@ -14,13 +14,13 @@ function activate(context) {
 
     //       FIX: Create the panel completely before trying to access its webview property
     const panel = vscode.window.createWebviewPanel(
-        'pitcher', // Identifies the type of the webview. Used internally
-        'Extension: Pitcher for VS Code', // Title of the panel displayed to the user
-        vscode.ViewColumn.One, // Editor column to show the new webview panel in.
+        'pitcher',
+        'Extension: Pitcher for VS Code',
+        vscode.ViewColumn.One,
         { enableScripts: true } // Webview options. More on these later.
     );
 
-    // FIX: Assign the HTML content after the panel is instantiated
+
 
 
     panel.webview.html = getWebviewContent();
@@ -31,11 +31,12 @@ function activate(context) {
                 return;
         }
     });
+
+
     const saveListener = vscode.workspace.onDidSaveTextDocument(
         async (document) => {
 
-            const workspace =
-                vscode.workspace.workspaceFolders?.[0];
+            const workspace = vscode.workspace.workspaceFolders?.[0];
 
             if (!workspace) {
                 return;
@@ -46,37 +47,39 @@ function activate(context) {
                 'README.md'
             );
 
-            // README pe save hua hai to ignore karo
-            if (
-                path.basename(document.fileName) ===
-                'README.md'
-            ) {
+            // README pe save hua hai to ignore karo (infinite loop se bachne ke liye)
+            if (path.basename(document.fileName) === 'README.md') {
                 return;
             }
 
-            // Agar README already exist karti hai to kuch mat karo
-            // if (fs.existsSync(readmePath)) {
-            //     return;
-            // }
+            // 1. Check karo ki README pehle se exist karti hai ya nahi
+            const isUpdate = fs.existsSync(readmePath);
 
-            console.log(
-                'README not found. Generating...'
-            );
+            if (isUpdate) {
+                console.log('README found. Updating...');
+            } else {
+                console.log('README not found. Generating...');
+            }
 
-            const project =
-                await scanProject();
+            const project = await scanProject();
+            const content = generateReadme(project);
 
-            const content =
-                generateReadme(project);
-
+            // README write/overwrite karein
             writeReadme(
                 readmePath,
                 content
             );
 
-            vscode.window.showInformationMessage(
-                'README.md generated automatically'
-            );
+            // 2. Conditionally alag-alag notification show karein
+            if (isUpdate) {
+                vscode.window.showInformationMessage(
+                    'README.md updated successfully!'
+                );
+            } else {
+                vscode.window.showInformationMessage(
+                    'README.md created successfully!'
+                );
+            }
         }
     );
 
@@ -144,7 +147,6 @@ function getWebviewContent() {
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            box-shadow: 0 4px 20px rgba(255, 102, 0, 0.2);
         }
 
         .logo-icon {
@@ -373,7 +375,9 @@ function getWebviewContent() {
     <div class="fixed-top-wrapper">
         <div class="header-container">
             <div class="logo-container">
-                <img src="images/logo.png" alt="Pitcher Logo" class="logo-icon">
+                <svg class="logo-icon" viewBox="0 0 24 24">
+                    <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                </svg>
             </div>
             <div class="header-info">
                 <h1>Pitcher</h1>
@@ -506,3 +510,4 @@ module.exports = {
     activate,
     deactivate
 };
+
