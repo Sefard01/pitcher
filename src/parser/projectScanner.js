@@ -123,9 +123,9 @@ async function scanProject() {
         }
     });
 
-    // =========================
+
     // package.json Detection
-    // =========================
+
 
     const packageJsonPath =
         path.join(
@@ -137,77 +137,75 @@ async function scanProject() {
         fs.existsSync(
             packageJsonPath
         )
-    ) {
+    )
 
         techStack.push(
             'Node.js'
         );
 
-        try {
+    try {
 
-            const packageJson =
-                JSON.parse(
-                    fs.readFileSync(
-                        packageJsonPath,
-                        'utf8'
-                    )
-                );
-
-            const deps = {
-
-                ...(packageJson.dependencies || {}),
-
-                ...(packageJson.devDependencies || {})
-            };
-
-            if (deps.react)
-                techStack.push('React');
-
-            if (deps.next)
-                techStack.push('Next.js');
-
-            if (deps.express)
-                techStack.push('Express');
-
-            if (deps.mongoose)
-                techStack.push('MongoDB');
-
-            if (deps.mysql2)
-                techStack.push('MySQL');
-
-            if (deps.pg)
-                techStack.push('PostgreSQL');
-
-            if (deps.firebase)
-                techStack.push('Firebase');
-
-            if (deps.tailwindcss)
-                techStack.push('Tailwind CSS');
-
-            if (deps.typescript)
-                techStack.push('TypeScript');
-
-            if (deps.vue)
-                techStack.push('Vue.js');
-
-            if (deps.angular)
-                techStack.push('Angular');
-
-            if (deps.nestjs)
-                techStack.push('NestJS');
-
-        } catch (err) {
-
-            console.log(
-                'Package.json Error:',
-                err
+        const packageJson =
+            JSON.parse(
+                fs.readFileSync(
+                    packageJsonPath,
+                    'utf8'
+                )
             );
-        }
+
+        const deps = {
+
+            ...(packageJson.dependencies || {}),
+
+            ...(packageJson.devDependencies || {})
+        };
+
+        if (deps.react)
+            techStack.push('React');
+
+        if (deps.next)
+            techStack.push('Next.js');
+
+        if (deps.express)
+            techStack.push('Express');
+
+        if (deps.mongoose)
+            techStack.push('MongoDB');
+
+        if (deps.mysql2)
+            techStack.push('MySQL');
+
+        if (deps.pg)
+            techStack.push('PostgreSQL');
+
+        if (deps.firebase)
+            techStack.push('Firebase');
+
+        if (deps.tailwindcss)
+            techStack.push('Tailwind CSS');
+
+        if (deps.typescript)
+            techStack.push('TypeScript');
+
+        if (deps.vue)
+            techStack.push('Vue.js');
+
+        if (deps.angular)
+            techStack.push('Angular');
+
+        if (deps.nestjs)
+            techStack.push('NestJS');
+
+    } catch (err) {
+
+        console.log(
+            'Package.json Error:',
+            err
+        );
     }
 
-    // =========================
     // Extension Detection
-    // =========================
+
 
     if (
         fileNames.some(
@@ -299,9 +297,8 @@ async function scanProject() {
         techStack.push('Dart');
     }
 
-    // =========================
+
     // Config Files Detection
-    // =========================
 
     if (
         fileNames.includes(
@@ -346,9 +343,8 @@ async function scanProject() {
         );
     }
 
-    // =========================
+
     // VS Code Extension Detection
-    // =========================
 
     if (
 
@@ -366,16 +362,17 @@ async function scanProject() {
         );
     }
 
-    // =========================
+
+
     // Remove Duplicates
-    // =========================
+
 
     const uniqueTechStack =
         [...new Set(techStack)];
 
-    // =========================
     // Project Type Detection
-    // =========================
+
+
     const structure =
         buildTree(rawPaths);
     let projectType =
