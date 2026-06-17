@@ -1,0 +1,21 @@
+# Prerequisites (Logs & Packages)
+**/node_modules/
+*.log
+
+# Development / Testing tools
+.vscode-test/
+**/.vscode-test.*
+
+# Personal VS Code settings (Optional to ignore)
+.vscode/
+
+# Build outputs
+**/*.map
+
+# Configurations you might want to keep local
+.yarnrc
+**/eslint.config.mjs
+**/jsconfig.json
+
+# Readmes you don't need to track
+vsc-extension-quickstart.md
