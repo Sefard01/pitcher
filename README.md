@@ -6,6 +6,7 @@ Pitcher is a VS Code extension that helps developers maintain project documentat
 
 Instead of manually editing documentation whenever files are added, removed, or modified, Pitcher monitors the workspace and keeps the README synchronized with the project structure.
 
+ <img src="src/images/poster.png" alt="pitcher" width="100%">
 ---
 
 ## Features
