@@ -45,8 +45,9 @@ ${project.projectName} is a ${project.projectType} documented automatically by P
 |----------|--------|
 | Project Name | ${project.projectName} |
 | Project Type | ${project.projectType} |
+| Total Folders | ${(project.totalFolders) - 1} |
 | Total Files | ${project.totalFiles} |
-| Total Folders | ${project.totalFolders} |
+
 
 ---
 
@@ -89,8 +90,9 @@ cd ${project.projectName}
 
 | Metric | Count |
 |---------|---------|
+| Folders | ${(project.totalFolders)-1} |
 | Files | ${project.totalFiles} |
-| Folders | ${project.totalFolders} |
+
 
 ---
 

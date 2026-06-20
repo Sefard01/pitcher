@@ -13,6 +13,7 @@ async function scanProject() {
 
     const rootPath =
         workspace.uri.fsPath;
+        
 
     const projectName =
         path.basename(rootPath);

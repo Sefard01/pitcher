@@ -1,65 +1,257 @@
 # Pitcher
 
-This is the README for your extension "pitcher". After writing up a brief description, we recommend including the following sections.
+> Automatic README management for VS Code projects.
 
-## Features
+Pitcher is a VS Code extension that helps developers maintain project documentation by creating and updating README files based on project structure changes.
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+Instead of manually editing documentation whenever files are added, removed, or modified, Pitcher monitors the workspace and keeps the README synchronized with the project structure.
 
 ---
 
-## Working with Markdown
+## Features
 
-You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
+### Automatic README Creation
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets
+When a project does not contain a `README.md` file, Pitcher automatically generates one.
 
-## For more information
+### Project Monitoring
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+Pitcher watches the workspace for:
 
-**Enjoy!**
+* File creation
+* File deletion
+* File modifications
+* Folder changes
+
+### README Synchronization
+
+Whenever the project structure changes, Pitcher updates the README file to reflect the latest structure.
+
+### Project Structure Documentation
+
+Pitcher can generate documentation for:
+
+* Folder structure
+* Project files
+* Source directories
+* Configuration files
+
+### VS Code Integration
+
+Pitcher works directly inside VS Code and integrates with the current workspace.
+
+---
+
+## How It Works
+
+### Step 1
+
+Open a project in VS Code.
+
+### Step 2
+
+Pitcher checks whether a `README.md` file exists.
+
+### Step 3
+
+If no README file is found, Pitcher creates one.
+
+### Step 4
+
+Pitcher starts monitoring the workspace using file system watchers.
+
+### Step 5
+
+When files or folders change, the README is updated automatically.
+
+---
+
+## Example
+
+### Before
+
+```text
+project/
+├── src/
+│   ├── App.jsx
+│   └── Navbar.jsx
+```
+
+README:
+
+```md
+# Project
+
+Basic project documentation.
+```
+
+### After Adding a File
+
+```text
+project/
+├── src/
+│   ├── App.jsx
+│   ├── Navbar.jsx
+│   └── DarkMode.jsx
+```
+
+Updated README:
+
+```md
+# Project
+
+## Structure
+
+src/
+├── App.jsx
+├── Navbar.jsx
+├── DarkMode.jsx
+```
+
+---
+
+## Commands
+
+```text
+Pitcher: Create README
+Pitcher: Sync README
+Pitcher: Refresh Documentation
+```
+
+---
+
+## Technology Stack
+
+* TypeScript
+* Node.js
+* VS Code Extension API
+* File System Watcher
+
+---
+
+## Benefits
+
+* Reduces manual README maintenance
+* Keeps documentation aligned with project structure
+* Improves project organization
+* Works directly inside VS Code
+
+---
+
+## Future Improvements
+
+* Custom README templates
+* Markdown formatting options
+* Project statistics
+* Changelog generation
+* Git integration
+
+---
+
+## License
+
+MIT License
+
+
+<!-- PITCHER_START -->
+
+# pitcher
+
+## Overview
+
+pitcher is a VS Code Extension documented automatically by Pitcher.
+
+---
+
+## Project Information
+
+| Property | Value |
+|----------|--------|
+| Project Name | pitcher |
+| Project Type | VS Code Extension |
+| Total Folders | 7 |
+| Total Files | 19 |
+
+
+---
+
+## Technology Stack
+
+- Node.js
+- JavaScript
+- VS Code Extension
+
+---
+
+## Folder Structure
+
+```text
+pitcher
+├── vsc-extension-quickstart.md
+├── test
+│   └── extension.test.js
+├── src
+│   ├── utils
+│   │   └── fileSystem.js
+│   ├── parser
+│   │   └── projectScanner.js
+│   ├── images
+│   │   ├── poster.png
+│   │   └── pitcher-icon.png
+│   ├── generator
+│   │   └── readmeGenerator.js
+│   └── extension.js
+├── README.md
+├── package.json
+├── package-lock.json
+├── CHANGELOG.md
+├── .vscodeignore
+├── .vscode-test.mjs
+├── jsconfig.json
+├── eslint.config.mjs
+├── LICENSE.txt
+└── .vscode
+    ├── launch.json
+    └── extensions.json
+```
+
+---
+
+## Features
+
+- Automatic README generation
+- Automatic README updates
+- Technology stack detection
+- Folder structure analysis
+- Project statistics
+
+---
+
+## Installation
+
+```bash
+git clone <repository-url>
+
+cd pitcher
+```
+
+---
+
+## Statistics
+
+| Metric | Count |
+|---------|---------|
+| Files | 19 |
+| Folders | 8 |
+
+---
+
+## Author
+
+Generated by Pitcher
+
+Pitcher Managed
+Last Updated: 19 / 06 / 2026 at 10:21 PM
+
+
+<!-- PITCHER_END -->
