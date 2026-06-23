@@ -4,7 +4,7 @@
   "description": "Smart README generator that auto-creates or updates on file save.",
   "publisher": "f490a06a-5144-6ee8-ace2-aa39a22f9831",
     "icon": "src/images/pitcher-icon.png",
-  "version": "1.0.0",
+  "version": "1.4.0",
   "engines": {
     "vscode": "^1.80.0"
   },
